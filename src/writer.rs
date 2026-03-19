@@ -10,10 +10,10 @@ pub fn set_pixel(render_data: &mut [char], x: usize, y: usize, ch: char) {
 }
 
 pub fn draw_line(point0: &Point, point1: &Point, render_data: &mut [char]) {
-    let mut x0 = point0.x as isize;
-    let mut y0 = point0.y as isize;
-    let x1 = point1.x as isize;
-    let y1 = point1.y as isize;
+    let mut x0 = ((point0.x + 1.0) * 0.5 * FRAME_WIDTH as f32).round() as isize;
+    let mut y0 = ((point0.y + 1.0) * 0.5 * FRAME_HEIGHT as f32).round() as isize;
+    let x1 = ((point1.x + 1.0) * 0.5 * FRAME_WIDTH as f32).round() as isize;
+    let y1 = ((point1.y + 1.0) * 0.5 * FRAME_HEIGHT as f32).round() as isize;
 
     let dx = (x1 - x0).abs();
     let dy = (y1 - y0).abs();

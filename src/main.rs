@@ -11,14 +11,13 @@ mod writer;
 use constants::{FRAME_HEIGHT, FRAME_WIDTH};
 use helpers::serialize;
 use structs::*;
-use writer::{draw_line, set_pixel};
 
 use crate::helpers::transform_vec3_to_base;
 use crate::perspective_projection::perspective_projection;
 use crate::writer::draw;
 
 fn main() -> Result<(), std::io::Error> {
-    let mut out = io::stdout();
+    //let mut out = io::stdout();
     let fb = FrameBuffer::new(FRAME_WIDTH, FRAME_HEIGHT);
 
     let mut render_data: Vec<char> = vec![' '; fb.width * fb.height];
