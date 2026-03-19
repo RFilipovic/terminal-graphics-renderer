@@ -1,4 +1,5 @@
 use crossterm::event::{self, Event, KeyCode};
+use crossterm::terminal::disable_raw_mode;
 
 pub fn handle_input() -> Option<(char, f32)> {
     if event::poll(std::time::Duration::from_millis(100)).unwrap()
@@ -11,7 +12,10 @@ pub fn handle_input() -> Option<(char, f32)> {
             KeyCode::Left => return Some(('y', -1.0)), // rotate y negative
             KeyCode::Char('e') => return Some(('z', 1.0)), // rotate z positive
             KeyCode::Char('r') => return Some(('z', -1.0)), // rotate z negative
-            KeyCode::Char('q') => std::process::exit(0),
+            KeyCode::Char('q') => {
+                disable_raw_mode().unwrap();
+                std::process::exit(0);
+            }
             _ => {}
         }
     }

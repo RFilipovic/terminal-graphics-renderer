@@ -89,15 +89,16 @@ fn main() -> Result<(), std::io::Error> {
     loop {
         if let Some((axis, direction)) = handle_input() {
             rotate_point(&mut cube_vertices, &axis, direction);
-            render_data.fill(' ');
-            draw(
-                perspective_projection(&cube_vertices),
-                &cube_edges,
-                &mut render_data,
-            );
-            write!(out, "\x1b[2J\x1b[H")?;
-            out.flush()?;
-            println!("{}", serialize(&render_data, FRAME_WIDTH, FRAME_HEIGHT));
         }
+        render_data.fill(' ');
+        draw(
+            perspective_projection(&cube_vertices),
+            &cube_edges,
+            &mut render_data,
+        );
+        write!(out, "\x1b[2J\x1b[H")?;
+        out.flush()?;
+        println!("{}", serialize(&render_data, FRAME_WIDTH, FRAME_HEIGHT));
+        std::thread::sleep(std::time::Duration::from_millis(16));
     }
 }
