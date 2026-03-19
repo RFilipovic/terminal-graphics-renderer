@@ -87,8 +87,8 @@ fn main() -> Result<(), std::io::Error> {
     ];
 
     loop {
-        if let Some(axis) = handle_input() {
-            rotate_point(&mut cube_vertices, &axis);
+        if let Some((axis, direction)) = handle_input() {
+            rotate_point(&mut cube_vertices, &axis, direction);
             render_data.fill(' ');
             draw(
                 perspective_projection(&cube_vertices),
