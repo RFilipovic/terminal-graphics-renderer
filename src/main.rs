@@ -54,7 +54,7 @@ fn main() -> Result<(), std::io::Error> {
         write!(out, "\x1b[2J\x1b[H")?;
         out.flush()?;
         println!("{}", serialize(&render_data, FRAME_WIDTH, FRAME_HEIGHT));
-        std::thread::sleep(std::time::Duration::from_millis(8));
+        std::thread::sleep(std::time::Duration::from_millis(16));
     }
 
     disable_raw_mode().unwrap();
